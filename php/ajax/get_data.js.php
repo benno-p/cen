@@ -12,7 +12,7 @@ FROM ( SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As featur
 FROM (SELECT 'Feature' As type
    , ST_AsGeoJSON( st_transform(lg.geom,4326) )::json As geometry
    , row_to_json(lp) As properties
-  FROM mfu.parcelles As lg 
+  FROM $parcelles As lg 
         INNER JOIN (SELECT 
             id_unique as id_parcelle ,
             nom_group as nom_site ,
@@ -20,8 +20,8 @@ FROM (SELECT 'Feature' As type
             coalesce(id_convention, 'ø') AS convention,
             coalesce(id_acquisition, 'ø') AS acquisition,
 			geom
-       FROM mfu.parcelles
-        WHERE 1=1 ) As lp 
+       FROM $parcelles
+        WHERE categorie_site='1' ) As lp 
       ON lg.id_unique = lp.id_parcelle ) As f )  As fc;
       ";
 

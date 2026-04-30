@@ -226,8 +226,6 @@ function load_parcelles() {
                 });
                 // Redessiner le DataTable après toutes les ajouts
                 dt4.draw();
-                dt4.column(4).visible(false);
-                dt4.column(7).visible(false);
                 // Appeler la fonction d'affichage des graphiques
                 afficherGraphiquesParcelles('parcelles');
                 // Forcer le redimensionnement
