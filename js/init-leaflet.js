@@ -21,7 +21,7 @@ const contour_green={
     opacity:1
     };
 // Index pour retrouver rapidement la couche par id_tourbiere
-const tourbiereIndex = Object.create(null);
+const parcelleIndex = Object.create(null);
 
 
 
@@ -104,7 +104,7 @@ function initmap() {
                 
                 const id = feature?.properties?.id_parcelle
                 if (id != null) {
-                tourbiereIndex[id] = layer; // <-- indexation ici
+                parcelleIndex[id] = layer; // <-- indexation ici
                 }
                 const content = '\
                 <div class="col-lg-12 leaf_title" >\
@@ -202,7 +202,7 @@ function load_parcelles() {
             //console.log(data);
             parcelles.clearLayers();
             // Vider la couche ET l'index
-            for (const k in tourbiereIndex) delete tourbiereIndex[k];
+            for (const k in parcelleIndex) delete parcelleIndex[k];
             if (data.features != null) {
                 $(data.features).each(function(key, value) {
                     parcelles.addData(data.features[key]);
@@ -249,14 +249,14 @@ function activate_events() {
     if (type !== 'row') return;
 
     const rowData = dt4.row(indexes[0]).data();
-    const id = rowData[0]; // colonne 2 -> index 1
+    const id = rowData[2]; // colonne 3 -> index 2
     if (!id) return;
 
-    const layer = tourbiereIndex[id];
+    const layer = parcelleIndex[id];
     console.log(id);
 
     if (!layer) {
-      console.warn(`Aucune tourbière trouvée pour id_tourbiere="${id}"`);
+      console.warn(`Aucune parcelle trouvée pour id_parcelle="${id}"`);
       return;
     }
 
