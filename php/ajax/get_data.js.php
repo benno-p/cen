@@ -14,7 +14,7 @@ FROM (SELECT 'Feature' As type
    , row_to_json(lp) As properties
   FROM mfu.parcelles As lg 
         INNER JOIN (SELECT 
-            id_unique ,
+            id_unique as id_parcelle ,
             nom_group as nom_site ,
             id_group as id_site ,
             coalesce(id_convention, 'ø') AS convention,
