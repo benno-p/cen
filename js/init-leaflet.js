@@ -21,7 +21,7 @@ const contour_green={
     opacity:1
     };
 const contour_rouge={
-    color:'#ff0000',
+    color:'#c65911',
     fillOpacity:0.1,
     weight:2,
     opacity:1
@@ -108,9 +108,9 @@ function initmap() {
         style: function(feature) {
         // Si acquisition est différent de 'ø', on retourne le style rouge, sinon vert
         if (feature.properties.acquisition !== 'ø') {
-            return contour_green;
-        } else {
             return contour_rouge;
+        } else {
+            return contour_green;
         }
         },
 
