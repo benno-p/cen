@@ -104,7 +104,7 @@ function initmap() {
     
     
     parcelles = L.geoJson(false, {
-        style:contour_green,
+        //style:contour_green,
         style: function(feature) {
         // Si acquisition est différent de 'Ø', on retourne le style rouge, sinon vert
         if (feature.properties.acquisition !== 'Ø') {
