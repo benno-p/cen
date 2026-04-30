@@ -200,12 +200,12 @@ function load_parcelles() {
             x=0;
             dt4.clear().draw();
             //console.log(data);
-            tourbieres.clearLayers();
+            parcelles.clearLayers();
             // Vider la couche ET l'index
             for (const k in tourbiereIndex) delete tourbiereIndex[k];
             if (data.features != null) {
                 $(data.features).each(function(key, value) {
-                    tourbieres.addData(data.features[key]);
+                    parcelles.addData(data.features[key]);
                         x++;
                         var rowNode = dt4.row.add( [
                         //x,
