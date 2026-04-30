@@ -22,7 +22,7 @@ FROM (SELECT 'Feature' As type
 			geom
        FROM mfu.parcelles
         WHERE 1=1 ) As lp 
-      ON lg.id_unique = lp.id_unique ) As f )  As fc;
+      ON lg.id_unique = lp.id_parcelle ) As f )  As fc;
       ";
 
 $query_result = pg_exec($dbconn,$sql) or die (pg_last_error());
