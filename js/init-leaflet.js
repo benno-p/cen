@@ -20,6 +20,12 @@ const contour_green={
     weight:2,
     opacity:1
     };
+const contour_rouge={
+    color:'#ff0000',
+    fillOpacity:0.1,
+    weight:2,
+    opacity:1
+    };
 // Index pour retrouver rapidement la couche par id_tourbiere
 const parcelleIndex = Object.create(null);
 
@@ -99,6 +105,15 @@ function initmap() {
     
     parcelles = L.geoJson(false, {
         style:contour_green,
+        style: function(feature) {
+        // Si acquisition est différent de 'Ø', on retourne le style rouge, sinon vert
+        if (feature.properties.acquisition !== 'Ø') {
+            return contour_green;
+        } else {
+            return contour_rouge;
+        }
+        },
+
         onEachFeature: function (feature, layer) //functionality on click on feature
             {
                 
