@@ -25,7 +25,7 @@ FROM (SELECT 'Feature' As type
             TRIM(LEADING '0' FROM (SUBSTRING(SPLIT_PART(id_unique, '|', 2) FROM 11 FOR 4))) as numero_parcelle,
 			geom
        FROM $parcelles
-        WHERE categorie_site='1' ) As lp 
+        WHERE categorie_site='1' and (id_convention is not null or id_acquisition is not null) ) As lp 
       ON lg.id_unique = lp.id_unique ) As f )  As fc;
       ";
 
