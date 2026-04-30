@@ -97,12 +97,12 @@ function initmap() {
     }).addTo(map);
     
     
-    tourbieres = L.geoJson(false, {
+    parcelles = L.geoJson(false, {
         style:contour_green,
         onEachFeature: function (feature, layer) //functionality on click on feature
             {
                 
-                const id = feature?.properties?.id_tourbiere;
+                const id = feature?.properties?.id_parcelle
                 if (id != null) {
                 tourbiereIndex[id] = layer; // <-- indexation ici
                 }
@@ -110,32 +110,27 @@ function initmap() {
                 <div class="col-lg-12 leaf_title" >\
                     <div class="col-sm-12">\
                         <div class="form-group">\
-                        <span>Id : <span class="fw-bolder">'+feature.properties.id_tourbiere+'</span></span>\
+                        <span>Parcelle: <span class="fw-bolder">'+feature.properties.id_parcelle+'</span></span>\
                         </div>\
                     </div>\
                     <div class="col-sm-12">\
                         <div class="form-group">\
-                        <span>Statut : <span class="fw-bolder">'+feature.properties.statut_tou+'</span></span>\
+                        <span>ID Site : <span class="fw-bolder">'+feature.properties.id_site+'</span></span>\
                         </div>\
                     </div>\
                     <div class="col-sm-12">\
                         <div class="form-group">\
-                        <span>Date : <span class="fw-bolder">'+feature.properties.date_maj+'</span></span>\
+                        <span>Nom Site : <span class="fw-bolder">'+feature.properties.nom_site+'</span></span>\
                         </div>\
                     </div>\
                     <div class="col-sm-12">\
                         <div class="form-group">\
-                        <span>Structure : <span class="fw-bolder">'+feature.properties.structure+'</span></span>\
+                        <span>Convention : <span class="fw-bolder">'+feature.properties.convention+'</span></span>\
                         </div>\
                     </div>\
                     <div class="col-sm-12">\
                         <div class="form-group">\
-                        <span>Enjeu de protection : <span class="fw-bolder">'+feature.properties.enjeu_prot+'</span></span>\
-                        </div>\
-                    </div>\
-                    <div class="col-sm-12">\
-                        <div class="form-group">\
-                        <span>Niveau de flore : <span class="fw-bolder">'+feature.properties.niv_flore+'</span></span>\
+                        <span>Acquisition : <span class="fw-bolder">'+feature.properties.acquisition+'</span></span>\
                         </div>\
                     </div>\
                 </div>';
@@ -150,7 +145,7 @@ function initmap() {
                     }
                 });
                 layer.on("mouseout",function(e){
-                    tourbieres.resetStyle(e.target);
+                    parcelles.resetStyle(e.target);
                     dt4.column(0).search('').draw(); // Réinitialise le filtre
                 });
                 layer.bindPopup(content, {maxWidth : 400})
@@ -163,7 +158,7 @@ function initmap() {
             },
     }).addTo(map);
     
-    overlaysMaps={"Tourbiere":tourbieres,"Contours Administratifs":admin_geojson_feature}; //,"Contours Administratifs":admin_geojson_feature
+    overlaysMaps={"Sites":parcelles,"Contours Administratifs":admin_geojson_feature}; //,"Contours Administratifs":admin_geojson_feature
     baseMaps={"Ortho (IGN)":ignO,"Ortho (IGN N&B)":ignOrthoBW };//,"OSM":osm,"OSM (Noir & Blanc)":osmbg
     //baseMaps={"OSM N&B":osmbg,"OSM Watercolor":osmWatercolor};
     ControlLayer=L.control.layers(baseMaps,overlaysMaps, {position: 'bottomright'}).addTo(map); 
@@ -192,7 +187,7 @@ function clear_all_layer() {
 }
 
 
-function load_preloc_prat() {
+function load_parcelles() {
         $.ajax({
         url      : "php/ajax/get_data.js.php",
         data     : {},
@@ -214,14 +209,18 @@ function load_preloc_prat() {
                         x++;
                         var rowNode = dt4.row.add( [
                         //x,
-                        data.features[key].properties.id_tourbiere,
-                        data.features[key].properties.nom_entite,
-                        data.features[key].properties.statut_tou,
-                        data.features[key].properties.date_maj,
-                        data.features[key].properties.structure,
-                        data.features[key].properties.niv_flore,
-                        data.features[key].properties.niv_pedolo,
-                        data.features[key].properties.enjeu_prot
+
+/*                   <th>ID Site</th>
+                  <th>Nom Site</th>
+                  <th>Parcelle</th>
+                  <th>Convention</th>
+                  <th>Acquisition</th> */
+
+                        data.features[key].properties.id_site,
+                        data.features[key].properties.nom_site,
+                        data.features[key].properties.id_parcelle,
+                        data.features[key].properties.convention,
+                        data.features[key].properties.acquisition
                         ] ).draw( true ).node();
 
                 });
@@ -230,7 +229,7 @@ function load_preloc_prat() {
                 dt4.column(4).visible(false);
                 dt4.column(7).visible(false);
                 // Appeler la fonction d'affichage des graphiques
-                afficherGraphiquesTourbiere('prat');
+                afficherGraphiquesParcelles('parcelles');
                 // Forcer le redimensionnement
             }
         
@@ -271,19 +270,19 @@ function activate_events() {
     layer.openPopup();
   });
 
-  // --- Désélection d'une ligne : zoomer sur toute la couche tourbieres
+  // --- Désélection d'une ligne : zoomer sur toute la couche parcelles
   dt4.on('deselect.dyn', function (e, dt, type, indexes) {
     map.closePopup();
     if (type !== 'row') return;
     // Si la couche est vide, ne rien faire
-    const bounds = tourbieres && tourbieres.getLayers().length > 0
-      ? tourbieres.getBounds()
+    const bounds = parcelles && parcelles.getLayers().length > 0
+      ? parcelles.getBounds()
       : null;
 
     if (bounds && bounds.isValid && bounds.isValid()) {
       map.fitBounds(bounds, { padding: [20, 20] });
     } else {
-      console.warn('Pas de géométrie disponible dans la couche "tourbieres" pour zoomer.');
+      console.warn('Pas de géométrie disponible dans la couche "parcelles" pour zoomer.');
     }
   });
 
@@ -294,80 +293,7 @@ function activate_events() {
  * Affiche deux graphiques Highcharts basés sur les données d'un DataTable.
  * @param {string} tableId - L'ID du DataTable dans le DOM.
  */
-function afficherGraphiquesTourbiere(tableId) {
-    // Récupérer les données du DataTable
-    const table = $(`#${tableId}`).DataTable();
-    const data = table.rows().data();
-
-    // Initialiser les compteurs pour chaque catégorie
-    const statutTourbiere = { Potentielle: 0, Avérée: 0 };
-    const enjeuProtection = {
-        "Menace très forte": 0,
-        "Menace faible": 0,
-        "Menace potentielle": 0
-    };
-
-    // Parcourir les données et compter les occurrences
-    data.each((row) => {
-        // Colonne 3 : Statut de tourbière (index 2)
-        const statut = row[2];
-        if (statut in statutTourbiere) {
-            statutTourbiere[statut]++;
-        }
-
-        // Colonne 6 : Enjeu de protection (index 5)
-        const enjeu = row[7];
-        if (enjeu in enjeuProtection) {
-            enjeuProtection[enjeu]++;
-        }
-    });
-
-    // Préparer les données pour Highcharts
-    const statutData = Object.entries(statutTourbiere).map(([name, y]) => ({ name, y }));
-    const enjeuData = Object.entries(enjeuProtection).map(([name, y]) => ({ name, y }));
-
-    // Graphique 1 : Statut de tourbière
-    const chartStatut =Highcharts.chart('graphiqueStatut', {
-        chart: { type: 'pie', backgroundColor: '#f8f9fa' , height: '80%'   },
-        title: { text: 'Statut de tourbière' },
-        credits: {
-            enabled: false
-        },
-        plotOptions: {
-            pie: {
-            size: '120px',
-            center: ['50%', '50%'],
-            dataLabels: { enabled: true },
-            showInLegend: true
-            }
-        },
-        legend: {
-            enabled: false
-        },
-        series: [{
-            name: 'Statut',
-            data: statutData
-        }]
-    });
-
-    // Graphique 2 : Enjeu de protection
-    const chartEnjeu = Highcharts.chart('graphiqueEnjeu', {
-        chart: { type: 'pie', backgroundColor: '#f8f9fa' , height: '80%' },
-        title: { text: 'Enjeu de protection' },
-        credits: { enabled: false },
-        plotOptions: {
-            pie: {
-            size: '120px',
-            dataLabels: { enabled: true },
-            showInLegend: true
-            }
-        },
-        legend: { enabled: false },
-        series: [{
-            name: 'Enjeu',
-            data: enjeuData
-        }]
-    });
+function afficherGraphiquesParcelles(tableId) {
 }
 
 

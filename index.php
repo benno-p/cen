@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>PRAT Normandie</title>
+    <title>Sites du CEN Normandie</title>
     <link rel="shortcut icon" href="img/CenNormandie.ico" />
     <!-- Bootstrap Core CSS -->
 	<link href="bootstrap-5.0.0/css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +34,7 @@
     <div id="app-header" class="app-header sticky-top text-light">
       <div class="container-fluid d-flex justify-content-between align-items-center py-2 blurred-background">
         <div class="d-flex align-items-center gap-2">
-          <span class="moonflower fs-1 px-4">Prat Normandie</span>
+          <span class="moonflower fs-1 px-4">CEN Normandie</span>
         </div>
         <div class="d-flex">
           <img src="img/CenNormandie.png" alt="CEN Normandie" class="brand-logo" data-bs-toggle="tooltip" data-bs-placement="bottom" title="CEN Normandie">
@@ -54,11 +54,7 @@
         </div>
         <aside class="col-12 col-lg-4"  style="max-height:100%; overflow-y:auto;">
           <div class="side-card p-2 bg-light">
-                <p>Les <span class="fw-bold">tourbières</span> sont des milieux fragiles et originaux, bien présents en Normandie. Elles accueillent des espèces souvent rares et menacées et sont aussi les écosystèmes terrestres les plus efficaces pour le stockage de carbone à long terme.
-                </p>
-                <p>Le <span class="fw-bold">Programme régional d'actions en faveur des tourbières de Normandie</span> a pour objectif de fédérer les acteurs normands autour de la protection des écosystèmes tourbeux. Ce programme accompagne tous les acteurs impliqués ou souhaitant s'impliquer dans la mise en œuvre de la stratégie régionale pour les tourbières 2026-2035, notamment pour faire émerger des projets de protection, de gestion conservatoire et de restauration des tourbières sur les territoires.
-                </p>
-                <p>En 2020, un pré-atlas des tourbières de Normandie (voir carte interactive) a été réalisé en partenariat avec les Conservatoires botaniques nationaux de Brest et de Bailleul, à partir de bases de données sources ou de références bibliographiques. Afin de mettre à jour l'atlas des tourbières de Normandie, des inventaires de terrain complémentaires sont à intégrer ou à réaliser.
+                <p>
                 </p>
           </div>
         </aside>
@@ -72,18 +68,15 @@
         <div class="container-fluid  d-flex flex-row">
           <div class="col-8 " style="height:50vh;max-height:50vh; overflow-y:auto;">
           <!--<h2 class="h6 mb-2">Table des tourbières</h2>-->
-            <table id="prat" class="table table-sm table-secondary table-striped table-bordered" style="width:100%;">
+            <table id="parcelles" class="table table-sm table-secondary table-striped table-bordered" style="width:100%;">
               <thead>
                 <tr>
                   <!-- <th>#</th> -->
-                  <th>ID tourbiere</th>
-                  <th>Nom Entité</th>
-                  <th>Statut Tourbière</th>
-                  <th>Date de mise à jour</th>
-                  <th>Structure</th>
-                  <th>Connaissance flore</th>
-                  <th>Connaissance pédologique</th>
-                  <th>Enjeu de protection</th>
+                  <th>ID Site</th>
+                  <th>Nom Site</th>
+                  <th>Parcelle</th>
+                  <th>Convention</th>
+                  <th>Acquisition</th>
                 </tr>
               </thead>
               <tbody>
@@ -91,10 +84,7 @@
             </table>
           </div>
           <div class="d-flex col-4">
-<!--             <div id="info-prat" class="mt-3">
-              <h5>Informations Tourbière</h5>
-              <p>Sélectionnez une tourbière dans le tableau pour afficher ses informations ici.</p>
-            </div> -->
+
             <div class="w-100 d-flex flex-column col-4 h-100">
               <div class="d-flex">
                 <div id="graphiqueStatut" class="col-6 p-1 d-flex justify-content-center align-items-center"></div>
@@ -119,34 +109,7 @@
         <kbd class="small">CEN Normandie © <?php echo date("Y"); ?></kbd>
     </div>
 
-					<!-- <div id="table_wrapper" class="table-responsive" >
-							<table id="prat" class="table table-bordered table-hover display compact datatable-font-small">
-								<thead>
-									<tr>
-										<th class="text-center">
-											#
-										</th>
-										<th class="text-center">
-											<small>ID id_tourbiere</small>
-										</th>
-										<th class="text-center">
-											<small>Statut Tourbière</small>
-										</th>
-										<th class="text-center">
-											<small>Date de mise à jour</small>
-										</th>
-										<th class="text-center">
-											<small>Structure</small>
-										</th>
-										<th class="text-center">
-											<small>Enjeu de protection</small>
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-						</div> -->
+
 
 
 <script src="js/jquery-3.7.1.min.js" ></script>
@@ -196,7 +159,7 @@
     window.addEventListener('resize', () => map.invalidateSize());
 
 
-	const dt4 = $('#prat').DataTable({
+	const dt4 = $('#parcelles').DataTable({
 		"language": {
 		"paginate": {
 		"previous": "Préc.",
@@ -228,7 +191,7 @@
 
 
 	// 3) DataTables + Buttons
-	load_preloc_prat();
+	load_parcelles();
 
   // Initialisation des tooltips Bootstrap
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
