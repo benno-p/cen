@@ -220,7 +220,10 @@ function load_parcelles() {
                         data.features[key].properties.nom_site,
                         data.features[key].properties.id_parcelle,
                         data.features[key].properties.convention,
-                        data.features[key].properties.acquisition
+                        data.features[key].properties.acquisition,
+                        data.features[key].properties.commune,
+                        data.features[key].properties.section,
+                        data.features[key].properties.numero_parcelle
                         ] ).draw( true ).node();
 
                 });

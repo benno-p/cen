@@ -77,6 +77,9 @@
                   <th>Parcelle</th>
                   <th>Convention</th>
                   <th>Acquisition</th>
+                  <th>Commune</th>
+                  <th>Section</th>
+                  <th>Numéro de Parcelle</th>
                 </tr>
               </thead>
               <tbody>
