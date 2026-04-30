@@ -1,0 +1,164 @@
+
+.point_er:hover {
+    cursor:pointer;
+}
+.rotate_ {
+  animation: rotation 1s infinite linear;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+.datepicker.dropdown-menu {
+    z-index: 9999 !important;
+}
+a.nav-link {
+color:rgba(206,212,218,0.6);
+}
+a.nav-link:hover {
+color:rgba(206,212,218,1);
+}
+
+.loader {
+    background-color: #4CAF50;
+    color:#fff;
+}
+.loader i.fa {
+    margin-right: 8px;
+    margin-left: 8px;
+}
+.visible_s {
+    visibility: hidden;
+}
+.z_indexed {
+    z-index:200;
+}
+
+a.nav-link.active {
+    color:rgba(210,216,222,1);
+}
+a.nav-link.active::after {
+  content:"]";
+}
+a.nav-link.active::before {
+  content:"[";
+}
+
+.datatable-font-small {
+    font-size:10px;
+}
+
+.dataTable th, .dataTable td {
+  font-size: 12px;
+  }
+/* table.dataTable tbody.parcelles tr td {
+    font-size: 16px;
+    } */
+#v-pills-convention-tab.active{
+  background-color: #198754;
+}
+#v-pills-acquisition-tab.active{
+  background-color: #dc3545;
+}
+#v-pills-bail_e-tab.active{
+  background-color: #0d6efd;
+}
+#v-pills-bail_rural-tab.active{
+  background-color: #ffc107;
+}
+#v-pills-pret_usage-tab.active{
+  background-color: #212529;
+}
+#v-pills-ore-tab.active{
+  background-color: #0dcaf0;
+}
+#v-pills-ddg-tab.active{
+  background-color: #8917cb;
+}
+.bg-purple {
+  background-color: #8917cb;
+}
+.border-purple {
+  border: 1px solid #8917cb;
+}
+/* BOOTSTRAP COLOR */
+/* $primary:       #0d6efd
+$secondary:     #6c757d;
+$success:       #198754;
+$info:          #0dcaf0;
+$warning:       #ffc107;
+$danger:        #dc3545;
+$light:         #f8f9fa;
+$dark:          #212529; 
+$purple:        #8917cb;
+*/
+
+
+.col_ellipsis {
+  white-space: nowrap; 
+  max-width: 100px; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.background_image {
+  background-image: url('../img/pissenlit_up.png');
+  background-repeat:no-repeat;
+}
+.h_background_image {
+  background-image: url('../img/h.png');
+  /* background-repeat:no-repeat; */
+}
+
+/* Modal padding disable */
+body {
+  padding-right:0 !important;
+}
+
+.modal-open {
+  overflow:auto;
+  padding-right:0 !important;
+}
+
+
+#list_actions {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+@font-face {
+  font-family: Bebas;
+  src: url(../fonts/Bebas-Regular.ttf);
+}
+@font-face {
+  font-family: MoonFlower;
+  src: url(../fonts/Moon-Flower.ttf);
+}
+
+.bebas {
+  font-family: Bebas;
+}
+.moonflower {
+  font-family: MoonFlower;
+}
+table.dataTable tbody > tr.selected, table.dataTable tbody > tr > .selected {
+  background-color: #0074e8;
+  color:#fff;
+  font-weight: 700;
+}
+.dataTables_scrollHeadInner {
+  width:100% !important;
+}
+
+.xxs {
+    font-size: 14px;
+}
+
+/* FullCalendar custom button*/
+.fc .fc-sw15-button {
+  font-size:12px;
+}

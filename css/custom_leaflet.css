@@ -1,0 +1,46 @@
+.leaflet-popup-content-wrapper {
+  background:#222222;
+  color:#fff;
+  font-size:12px;
+  font-weight:600;
+  line-height:4px;
+  height:140px;
+  width:220px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  }
+.leaflet-popup-content-wrapper a {
+  color:#e39417;
+  font-size:12px;
+  font-weight:500;
+  }
+.leaflet-popup-content-wrapper a:hover {
+  color:#e39417;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+  }
+.leaflet-popup-close-button {
+  margin-right:20px;
+}
+.leaflet-popup-close-button:hover {
+  color:#e39417;
+}
+.leaflet-popup-tip {
+    background:#222222;
+}
+#select_car{
+    width:80px;
+    color:#fff;
+    background-color:#222222;
+}
+#select_car{
+    width:80px;
+    color:#fff;
+    background-color:#222222;
+}
+#select_tra{
+    width:80px;
+    color:#fff;
+    background-color:#222222;
+}

@@ -1,0 +1,185 @@
+.un_v {
+visibility: hidden;
+}
+@font-face {
+font-family: Bebas;
+src: url(./fonts/Bebas-Regular.ttf);
+}
+@font-face {
+font-family: MoonFlower;
+src: url(./fonts/Moon-Flower.ttf);
+}
+.bebas {
+font-family: Bebas;
+}
+.moonflower {
+font-family: MoonFlower;
+}
+
+.autocomplete {
+    /*the container must be positioned relative:*/
+    position: relative;
+    /* display: inline-block; */
+    /*border-radius: 2px;*/
+    
+  }
+  
+  .autocomplete-items {
+    max-height: 200px;
+    overflow-y: scroll;
+    z-index:99;
+  }
+  
+  .autocompleteItem {
+    padding: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+    font-size:14px;
+    margin-top:0px;
+    margin-bottom:0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /*when hovering an item:*/
+  .autocompleteItem:hover {
+    background-color: #e9e9e9; 
+  }
+  .autocompleteItem.autocomplete-active {
+    background-color: #e9e9e9; 
+  }
+
+
+
+    /* Pour que les % et vh puissent fonctionner correctement */
+    html, body { height: 100%; }
+
+    /* Variables CSS: on calcule --header-h en JS */
+    :root {
+      --header-h: 0px;     /* sera remplacé par la hauteur réelle du header */
+      --map-share: 45%;    /* carte 60% */
+      --table-share: 55%;  /* datatable 40% */
+    }
+
+    body { background-color: #f8f9fa; }
+
+    /* Header visuel */
+    .app-header { background-color: #30842b; }
+    .brand-logo { max-width: 80px; max-height: 40px; opacity: 0.8; }
+    .app-title { font-size: 1.25rem; margin: 0; }
+
+    /* Conteneur principal: occupe au moins tout le viewport */
+    .app-root { min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* Zone sous le header: GRID vertical, 60/40, hauteur = viewport - header */
+    .app-content {
+      height: calc(100vh - var(--header-h));
+      display: grid;
+      grid-template-rows: var(--map-share) var(--table-share);
+      /* fallback si la hauteur est trop petite (optionnel) */
+    }
+
+
+/* pane-map doit pouvoir transmettre sa hauteur aux enfants */
+.pane-map { min-height: 0; }
+
+/* S'assurer que le container et la row étirent la hauteur disponible */
+.pane-map > .container-fluid,
+.pane-map .row { height: 100%; }
+
+
+
+.side-card {
+  /*color: #216058;*/
+  height: 100%;           /* si tu souhaites que le bloc prenne toute la hauteur */
+  overflow: auto;         /* scroll interne si nécessaire */
+}
+
+
+
+    /* Panneau carte et panneau table */
+    .pane-map, .pane-table { min-height: 0; } /* autorise overflow sans imposer min-content */
+    #map { height: 100%; width: 100%; }       /* Leaflet remplit 100% du panneau */
+
+    /* Table scrollable dans son panneau */
+    .pane-table { overflow: auto; }
+
+    /* Finitions DataTables — supprimer les espaces entre pagination */
+    .dataTables_wrapper .pagination { gap: 0 !important; }
+    .dataTables_wrapper .page-item .page-link { margin: 0 !important; }
+    .dataTables_wrapper .dataTables_paginate .paginate_button { margin: 0 !important; }
+
+    /* Optionnel: sur très petites hauteurs, basculer en 50/50 pour lisibilité */
+    @media (max-height: 620px) {
+      .app-content { grid-template-rows: 50% 50%; }
+    }
+
+
+/* Curseur en main sur les lignes du tableau */
+#prat tbody tr {
+  cursor: pointer;
+}
+
+/* Optionnel: effet visuel au survol */
+#prat tbody tr:hover {
+  background-color: #f4f8ff;
+}
+
+
+
+.blurred-background {
+    position: relative;
+    width: 100%;
+    height: 64px; /* Ajuste la hauteur */
+    overflow: hidden;
+}
+
+/* Pseudo-élément pour le fond flouté */
+.blurred-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/tourbiere_bandeau.png'); /* Remplace par ton image */
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px); /* Intensité du flou */
+    opacity: 0.6; /* Opacité */
+    z-index: 0;
+}
+
+/* Contenu au-dessus */
+.blurred-background > * {
+    position: relative;
+    z-index: 1;
+    color: #fff; /* Texte lisible */
+}
+
+.fixed-footer {
+            position: fixed;
+            bottom: 0px; /* espace par rapport au bas */
+            right: 0px;  /* espace par rapport à la droite */
+            z-index: 1030; /* au-dessus des autres éléments */
+        }
+
+#logos img {
+  opacity: 0.5;
+}
+#logos img:hover {
+  opacity: 1;
+}
+
+
+
+/* Un petit espacement vertical entre les contrôles empilés */
+.leaflet-top .leaflet-control { margin-bottom: 4px; }
+
+/* Limiter la hauteur du dropdown des suggestions */
+#autocompleteMenu { max-height: 220px; overflow: auto; }
+
+/* Optionnel: resserrer un peu le contrôle des couches */
+.leaflet-control-layers { font-size: .9rem; }
