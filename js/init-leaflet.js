@@ -161,6 +161,7 @@ function initmap() {
                 });
                 layer.on("mouseout",function(e){
                     parcelles.resetStyle(e.target);
+                    id = null;
                     dt4.column(2).search('').draw(); // Réinitialise le filtre
                 });
                 layer.bindPopup(content, {maxWidth : 400})
