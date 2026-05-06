@@ -155,7 +155,7 @@ function initmap() {
                     layer.setStyle(contour_rose);
                     if (id) {
                         //dt4.search(id).draw(); // Filtre la table avec l'ID
-                        dt4.column(0).search(id).draw(); // Filtre la table avec l'ID uniquement sur la colonne 1
+                        dt4.column(2).search(id).draw(); // Filtre la table avec l'ID uniquement sur la colonne 1
                         
                     }
                 });
@@ -268,7 +268,6 @@ function activate_events() {
 
     const rowData = dt4.row(indexes[0]).data();
     const id = rowData[2]; // colonne 3 -> index 2
-    console.log("ID extrait de la ligne sélectionnée:", id);
     if (!id) return;
 
     const layer = parcelleIndex[id];
